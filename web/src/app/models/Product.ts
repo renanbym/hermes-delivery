@@ -8,7 +8,7 @@ export class Product{
     public description: string;
     public shortDescription?: string;
     
-    constructor(props: Omit<Product, 'id'>, id: string){
+    constructor(props: Omit<Product, 'id'>){
         Object.assign(this, props);
     }
 

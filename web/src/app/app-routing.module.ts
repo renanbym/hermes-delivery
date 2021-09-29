@@ -1,16 +1,23 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductComponent } from './components/product/product.component';
 import { ProductsPageComponent } from './pages/products/products.component';
+import { ProductSideNavComponent } from './sidenav/product/product.component';
+import { SideNavOverviewComponent } from './sidenav/sidenavoverview.component';
 
 const routes: Routes = [
-  { path: '', component: ProductsPageComponent},
-  { path: 'products', component: ProductsPageComponent}
+  { path: '', redirectTo: '/products', pathMatch: 'full'},
+  { path: 'products', component: ProductsPageComponent },
+  { path: 'products/:id', component: SideNavOverviewComponent, outlet: 'sidebar', children: [
+    {
+      path: 'detail',
+      component: ProductSideNavComponent
+     },
+  ]}
 ];
 
 @NgModule({
-  imports: [RouterModule,RouterModule.forRoot(routes), CommonModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
